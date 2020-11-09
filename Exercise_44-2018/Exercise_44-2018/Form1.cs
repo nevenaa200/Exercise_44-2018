@@ -60,5 +60,31 @@ namespace Exercise_44_2018
 
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection konkcija = new SqlConnection())
+            {
+                konkcija.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FacultyDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                konkcija.Open();
+
+                string q = String.Format("INSERT into ExerciseResults values('{0}','{1}','{2}')",
+                 txtName.Text, txtIndex.Text, Convert.ToInt32(txtPoint.Text));
+
+                SqlCommand komanda = new SqlCommand(q, konkcija);
+                komanda.ExecuteNonQuery();
+
+            }
+        }
     }
 }
